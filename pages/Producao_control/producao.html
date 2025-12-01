@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../components/customPopups.js"></script>
+    <script src="../../auth.js"></script>
+    <script src="../../authGuard.js"></script>
+    <script src="../../components/sidebar.js" defer></script>
+    <link rel="stylesheet" href="../../global.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Controle de Produção</title>
+</head>
+
+<body>
+    <div class="main-content">
+        <div class="header">
+            <h1>Controle de Produção</h1>
+            <p>Gerenciamento de solicitações e processamento</p>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-shopping-cart" style="color: #3b82f6;"></i>
+                </div>
+                <div class="card-title">Total de Pedidos</div>
+                <div class="card-value" id="total-pedidos">0</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-industry" style="color: #f59e0b;"></i>
+                </div>
+                <div class="card-title">Em Produção</div>
+                <div class="card-value" id="em-producao">0</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                </div>
+                <div class="card-title">Prontos</div>
+                <div class="card-value" id="prontos">0</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-truck-loading" style="color: #06b6d4;"></i>
+                </div>
+                <div class="card-title">Transferidos Hoje</div>
+                <div class="card-value" id="transferidos-hoje">0</div>
+            </div>
+        </div>
+
+        <!-- Lista de Produção -->
+        <div class="table-section">
+            <h2 class="section-title">Solicitações de Produção</h2>
+            <div class="filter-bar">
+                <input type="text" placeholder="Buscar por produto ou código..." class="search-input"
+                    id="search-producao">
+                <select id="status-filter-producao" class="styled-select">
+                    <option value="Todos os status">Todos os Status</option>
+                    <option value="Em Produção">Em Produção</option>
+                    <option value="Pronto">Pronto</option>
+                </select>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Número</th>
+                        <th>Cliente</th>
+                        <th>Produto</th>
+                        <th>Data/Hora</th>
+                        <th>Quantidade</th>
+                        <th>Valor</th>
+                        <th>Status</th>
+                        <th>Prioridade</th>
+                        <th>Progresso</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="producao-body">
+                    <!-- Os pedidos em produção serão inseridos aqui dinamicamente -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <app-sidebar></app-sidebar>
+
+    <script src="producao.js"></script>
+</body>
+
+</html>

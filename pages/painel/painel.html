@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../components/customPopups.js"></script>
+    <script src="../../auth.js"></script>
+    <script src="../../authGuard.js"></script>
+    <script src="../../components/sidebar.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="painel.js" defer></script>
+
+    <link rel="stylesheet" href="../../global.css">
+    <title>Beira Mar Pescados</title>
+
+</head>
+
+<body>
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <h1>Painel - Gestão de Pescados</h1>
+            <p>Visão geral do sistema</p>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-boxes" style="color: #3b82f6;"></i>
+                </div>
+                <div class="card-title">Total em Estoque</div>
+                <div class="card-value" id="total-estoque">0 kg</div>
+
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-clipboard-list" style="color: #10b981;"></i>
+                </div>
+
+                <div class="card-title">Total de Pedidos</div>
+                <div class="card-value" id="total-pedidos">0</div>
+                <div class="card-trend">Pedidos registrados</div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-arrow-down" style="color: #10b981;"></i>
+                </div>
+                <div class="card-title">Entradas Hoje</div>
+                <div class="card-value" id="entradas-hoje">0</div>
+
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-calendar-times" style="color: #f59e0b;"></i>
+                </div>
+                <div class="card-title">Vencendo Hoje</div>
+                <div class="card-value" id="vencendo-hoje">0</div>
+                <div class="card-trend">Ação necessária</div>
+            </div>
+
+
+        </div>
+
+
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="alerts-section">
+                <h2 class="section-title">Alertas de Validade</h2>
+
+                <div id="alerts-container">
+                    <!-- alertas gerados a partir do estoque -->
+                </div>
+
+            </div>
+
+            <div class="value-card">
+                <div class="value-amount">R$ 25.670,50</div>
+                <div class="value-label">Valor total em estoque</div>
+            </div>
+
+
+        </div>
+    </div>
+    <app-sidebar></app-sidebar>
+</body>
+
+</html>

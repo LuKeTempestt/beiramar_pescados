@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../components/customPopups.js"></script>
+    <script src="../../auth.js"></script>
+    <script src="../../authGuard.js"></script>
+    <script src="../../components/sidebar.js" defer></script>
+    <link rel="stylesheet" href="../../global.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Gestão de Pedidos</title>
+    <script src="pedidos.js" defer></script>
+</head>
+
+<body>
+    <div class="main-content">
+        <div class="header">
+            <h1>Gestão de Pedidos</h1>
+            <p>Controle completo de pedidos e entregas</p>
+        </div>
+
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-shopping-cart" style="color: #3b82f6;"></i>
+                </div>
+                <div class="card-title">Total de Pedidos</div>
+                <div class="card-value">3</div>
+                <div class="card-trend">Pedidos registrados</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-hourglass-half" style="color: #f59e0b;"></i>
+                </div>
+                <div class="card-title">Pendentes</div>
+                <div class="card-value">1</div>
+                <div class="card-trend">Aguardando produção</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-industry" style="color: #06b6d4;"></i>
+                </div>
+                <div class="card-title">Em Produção</div>
+                <div class="card-value">1</div>
+                <div class="card-trend">Sendo preparados</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-check-double" style="color: #10b981;"></i>
+                </div>
+                <div class="card-title">Prontos</div>
+                <div class="card-value">1</div>
+                <div class="card-trend">Prontos para entrega</div>
+            </div>
+        </div>
+
+        <!-- Filtro e tabela -->
+        <div class="table-section">
+
+            <h2 class="section-title">Produtos em Pedidos</h2>
+            <div class="filter-container">
+                <input type="text" placeholder="Buscar por cliente ou número do pedido..." class="search-input"
+                    id="orders-search">
+                <button class="add-product-btn" id="add-order-btn">+ Adicionar Pedido</button>
+            </div>
+
+            <div class="table-container">
+                <table class="inventory-table">
+                    <thead>
+                        <tr>
+                            <th>Número</th>
+                            <th>Cliente</th>
+                            <th>Produto</th>
+                            <th>Quantidade</th>
+                            <th>Data Entrega</th>
+                            <th>Status</th>
+                            <th>Prioridade</th>
+                            <th>Valor Total</th>
+                            <th id="acao-tabela">Ações</th>
+                            <th id="status-tabela">Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="orders-body">
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Popup adicionar/editar pedido -->
+        <div id="popup-overlay-pedido" class="popup-overlay" style="display:none;">
+            <div class="popup">
+                <h2 id="popup-title">Adicionar Pedido</h2>
+                <label>Cliente</label>
+                <select id="pedido-cliente" class="search-input">
+                </select>
+                <label>Produto</label>
+                <select id="produto-nome">
+                    <option>Atum</option>
+                    <option>Amarela</option>
+                    <option>Polvo</option>
+                    <option>Robalo</option>
+                </select>
+                <label>Quantidade (kg)</label>
+                <input type="number" id="produto-qtd" class="search-input">
+                <label>Data Entrega</label>
+                <input id="pedido-data" type="date" class="search-input">
+                <label>Hora</label>
+                <input id="pedido-hora" type="time" class="search-input">
+                <label>Status</label>
+                <select id="pedido-status">
+                    <option>Pendente</option>
+                    <option>Em Produção</option>
+                    <option>Pronto</option>
+                </select>
+                <label>Prioridade</label>
+                <select id="pedido-prioridade">
+                    <option>Média</option>
+                    <option>Alta</option>
+                    <option>Urgente</option>
+                </select>
+                <label>Valor Total (R$)</label>
+                <input id="pedido-valor" type="number" step="0.01" class="search-input" required>
+
+                <div class="popup-buttons">
+                    <button id="salvar-pedido" class="save-btn">Salvar</button>
+                    <button id="cancelar-popup-pedido" class="cancel-btn">Cancelar</button>
+
+                </div>
+            </div>
+        </div>
+        <!-- Popup de visualização do pedido  -->
+        <div class="popup-overlay" id="view-overlay-pedido" style="display:none;">
+            <div class="popup" role="dialog" aria-modal="true">
+                <h3>Detalhes do Pedido</h3>
+                <div id="view-content-pedido" style="white-space:pre-wrap;"></div>
+                <div style="text-align:right; margin-top:12px;">
+                    <button id="view-close-pedido" class="cancel-btn">Fechar</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <app-sidebar></app-sidebar>
+</body>
+
+</html>

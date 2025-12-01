@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../components/customPopups.js"></script>
+    <script src="../../auth.js"></script>
+    <script src="../../authGuard.js"></script>
+    <script src="../../components/sidebar.js" defer></script>
+    <script src="entregas.js" defer></script>
+    <link rel="stylesheet" href="../../global.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Gestão de Entregas</title>
+</head>
+
+<body>
+    <div class="main-content">
+        <div class="header">
+            <h1>Gestão de Entregas</h1>
+            <p>Controle de entregas, rotas e status</p>
+        </div>
+
+        <!-- Cards de Status -->
+        <div class="dashboard-grid">
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-truck" style="color: #3b82f6;"></i>
+                </div>
+                <div class="card-title">Total</div>
+                <div class="card-value">5</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-clock" style="color: #f59e0b;"></i>
+                </div>
+                <div class="card-title">Pendentes</div>
+                <div class="card-value">2</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-route" style="color: #06b6d4;"></i>
+                </div>
+                <div class="card-title">Em Rota</div>
+                <div class="card-value">2</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                </div>
+                <div class="card-title">Entregues</div>
+                <div class="card-value">1</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-exclamation-triangle" style="color: #ef4444;"></i>
+                </div>
+                <div class="card-title">Problemas</div>
+                <div class="card-value">0</div>
+            </div>
+        </div>
+
+        <!-- Controle de Rotas -->
+        <div class="table-section">
+            <h2 class="section-title">Controle de Rotas Ativas</h2>
+
+            <div class="route-block">
+                <h3 class="section-title">Rota Centro - Zona 1 <span class="subtext">Motorista: João Silva</span></h3>
+                <div class="card">
+                    <strong>2ª Entrega - Loja Hiper Couto</strong><br>
+                    <span class="subtext">Av. Dom Luiz, 804 - Aldeota, Fortaleza</span><br>
+                    <span class="subtext">Horário: 10:30</span>
+                    <div style="margin-top:10px;">
+                        <button class="btn small" onclick="concluirEntregaRota('Loja Hiper Couto', 'Rota Centro')">Concluir e Avançar</button>
+                        <button class="btn small black" onclick="verDetalhesRota('Loja Hiper Couto', 'Av. Dom Luiz, 804 - Aldeota', '10:30')">Ver Detalhes</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="route-block" style="margin-top: 20px;">
+                <h3 class="section-title">Rota Aldeota - Zona 2 <span class="subtext">Motorista: Maria Santos</span>
+                </h3>
+                <div class="card">
+                    <strong>2ª Entrega - Mercado do Pescado</strong><br>
+                    <span class="subtext">Av. Beira Mar, 1200 - Iracema, Fortaleza</span><br>
+                    <span class="subtext">Horário: 11:30</span>
+                    <div style="margin-top:10px;">
+                        <button class="btn small" onclick="concluirEntregaRota('Mercado do Pescado', 'Rota Aldeota')">Concluir e Avançar</button>
+                        <button class="btn small black" onclick="verDetalhesRota('Mercado do Pescado', 'Av. Beira Mar, 1200 - Iracema', '11:30')">Ver Detalhes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lista de Entregas -->
+        <div class="table-section">
+            <h2 class="section-title">Lista de Entregas (5)</h2>
+
+            <div class="filter-bar">
+                <input type="text" id="search-entregas" placeholder="Buscar por cliente, pedido ou rota..." class="search-input">
+                <select id="status-filter" class="styled-select">
+                    <option>Todos</option>
+                    <option>Pendente</option>
+                    <option>Em Rota</option>
+                    <option>Entregue</option>
+                    <option>Problema</option>
+                </select>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Pedido</th>
+                        <th>Cliente & Rota</th>
+                        <th>Produtos</th>
+                        <th>Entrega</th>
+                        <th>Status</th>
+                        <th>Prioridade</th>
+                        <th>Valor</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="entregas-body">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Popup de visualização da entrega -->
+    <div class="popup-overlay" id="view-overlay-entrega" style="display:none;">
+        <div class="popup">
+            <h2>Detalhes da Entrega</h2>
+            <div id="view-content-entrega" style="white-space:pre-wrap;"></div>
+            <div style="text-align:right; margin-top:12px;">
+                <button id="view-close-entrega" class="cancel-btn">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup de confirmação -->
+    <div class="popup-overlay" id="confirm-overlay-entrega" style="display:none;">
+        <div class="popup" style="max-width:400px;">
+            <h2>Confirmação</h2>
+            <p id="confirm-message-entrega" style="margin:20px 0;"></p>
+            <div style="display:flex; gap:10px; justify-content:flex-end;">
+                <button id="confirm-cancel-entrega" class="cancel-btn">Cancelar</button>
+                <button id="confirm-ok-entrega" class="save-btn">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <app-sidebar></app-sidebar>
+</body>
+
+</html>
