@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <label>Mensagem:</label>
                 <textarea id="msg-conteudo" class="search-input" style="width:100%;min-height:120px;margin-bottom:15px;"></textarea>
                 <label>Prioridade:</label>
-                <select id="msg-prioridade" class="search-input" style="width:100%;margin-bottom:20px;">
+                <select id="msg-prioridade" class="styled-select" style="width:100%;margin-bottom:20px;">
                     <option value="normal">Normal</option>
                     <option value="urgente">Urgente</option>
                 </select>
