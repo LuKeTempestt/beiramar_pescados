@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../components/customPopups.js"></script>
+    <script src="../../auth.js"></script>
+    <script src="../../authGuard.js"></script>
+    <script src="../../components/sidebar.js" defer></script>
+    <script src="comunicacao.js" defer></script>
+    <link rel="stylesheet" href="../../global.css">
+    <title>Comunicação Integrada</title>
+</head>
+
+<body>
+    <div class="main-content">
+        <div class="header">
+            <h1>Comunicação Integrada</h1>
+            <p>Mensagens, notificações e alertas do sistema</p>
+        </div>
+
+        <!-- TOPO DE CONTROLE -->
+        <div class="comunicacao-topo">
+            <div class="aba-grupo">
+                <button class="aba-item ativa">
+                    💬 Mensagens <span class="contador">1</span>
+                </button>
+                <button class="aba-item">
+                    🔔 Notificações <span class="contador">2</span>
+                </button>
+                <button class="aba-item">
+                    ✉️ Nova Mensagem
+                </button>
+            </div>
+            <div class="aba-info">
+                <button class="info-btn">💭 1 não lida</button>
+                <button class="info-btn">🔔 2 notificações</button>
+            </div>
+        </div>
+
+        <!-- FILTROS -->
+        <div class="comunicacao-filtros card">
+            <h2 class="section-title">Filtros</h2>
+            <div class="filtros-grid">
+                <div class="filtro-item" style="text-align: center;">
+                    <label>Prioridade:</label>
+                    <select class="search-input" style="width: auto; margin: 0 auto;">
+                        <option>Todas</option>
+                        <option>Urgente</option>
+                        <option>Normal</option>
+                    </select>
+                </div>
+                <div class="filtro-item" style="text-align: center;">
+                    <label>Tipo:</label>
+                    <select class="search-input" style="width: auto; margin: 0 auto;">
+                        <option>Todos</option>
+                        <option>Operações</option>
+                        <option>Logística</option>
+                        <option>Qualidade</option>
+                    </select>
+                </div>
+                <div class="filtro-item" style="text-align: center;">
+                    <label>Status:</label>
+                    <select class="search-input" style="width: auto; margin: 0 auto;">
+                        <option>Todos</option>
+                        <option>Nova</option>
+                        <option>Lida</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- LISTA DE MENSAGENS -->
+        <div class="comunicacao-lista card" id="lista-mensagens">
+            <div class="mensagem-item urgente">
+                <div class="mensagem-conteudo">
+                    <h3 class="mensagem-titulo">Alerta: Produto próximo ao vencimento</h3>
+                    <p>Temos 8 produtos que vencem hoje. Verificar setor refrigerado urgentemente.</p>
+                    <span class="mensagem-detalhes">De: João Silva | Para: Todos | 25/08/2025 às 10:30</span>
+                </div>
+                <span class="mensagem-status status-critical">Urgente</span>
+            </div>
+
+            <div class="mensagem-item normal">
+                <div class="mensagem-conteudo">
+                    <h3 class="mensagem-titulo">Entrega ENT001 confirmada</h3>
+                    <p>A entrega para o Restaurante Mar & Terra foi concluída com sucesso às 08:45.</p>
+                    <span class="mensagem-detalhes">De: Maria Santos | Para: Pedro Costa | 25/08/2025 às 08:50</span>
+                </div>
+                <span class="mensagem-status status-normal">Normal</span>
+            </div>
+
+            <div class="mensagem-item normal">
+                <div class="mensagem-conteudo">
+                    <h3 class="mensagem-titulo">Nova remessa de Salmão aprovada</h3>
+                    <p>Lote SAL001 passou por todas as verificações de qualidade. Liberado para estoque.</p>
+                    <span class="mensagem-detalhes">De: Ana Lima | Para: Todos | 25/08/2025 às 07:15</span>
+                </div>
+                <span class="mensagem-status status-normal">Normal</span>
+            </div>
+        </div>
+
+        <!-- Popup de confirmação -->
+        <div class="popup-overlay" id="confirm-overlay-comunicacao" style="display:none;">
+            <div class="popup" style="max-width:400px;">
+                <h2>Confirmação</h2>
+                <p id="confirm-message-comunicacao" style="margin:20px 0;"></p>
+                <div style="display:flex; gap:10px; justify-content:flex-end;">
+                    <button id="confirm-cancel-comunicacao" class="cancel-btn">Cancelar</button>
+                    <button id="confirm-ok-comunicacao" class="save-btn">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <app-sidebar></app-sidebar>
+</body>
+
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../components/customPopups.js"></script>
+  <script src="../../auth.js"></script>
+  <script src="../../authGuard.js"></script>
+  <script src="../../components/sidebar.js"></script>
+  <script src="estoque.js"></script>
+  <link rel="stylesheet" href="../../global.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>Beira Mar Pescados</title>
+</head>
+
+<body>
+  <div class="main-content">
+    <!-- Cabeçalho -->
+    <div class="header">
+      <h1>Controle de Estoque</h1>
+      <p>Monitoramento e gestão do estoque de pescados</p>
+    </div>
+
+    <!-- Cards -->
+    <div class="dashboard-grid">
+      <div class="card">
+        <div class="card-icon">
+          <i class="fas fa-boxes" style="color: #3b82f6;"></i>
+        </div>
+        <div class="card-title">Itens em Estoque</div>
+        <div class="card-value" id="total-itens">0</div>
+
+      </div>
+
+      <div class="card">
+        <div class="card-icon">
+          <i class="fas fa-exclamation-circle" style="color: #ef4444;"></i>
+        </div>
+        <div class="card-title">Produtos Críticos</div>
+        <div class="card-value" id="produtos-criticos">0</div>
+        <div class="card-trend trend-down">Atenção necessária</div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">
+          <i class="fas fa-warehouse" style="color: #10b981;"></i>
+        </div>
+        <div class="card-title">Capacidade Total</div>
+        <div class="card-value">3 câmaras</div>
+        <div class="card-trend">Em operação</div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">
+          <i class="fas fa-cube" style="color: #60a5fa;"></i>
+        </div>
+        <div class="card-title">Glazer</div>
+        <div class="card-value" id="glazer-count">Com: 0 / Sem: 0</div>
+        <div class="card-trend">Quantidade por tipo</div>
+      </div>
+    </div>
+
+    <!-- Tabela de Estoque -->
+    <div class="table-section">
+      
+        <h2 class="section-title">Produtos em Estoque</h2>
+
+        <!-- Filtro -->
+        <div class="filter-container">
+          <input type="text" placeholder="Buscar produto..." class="search-input" id="search-input">
+          <button class="add-product-btn" id="add-product-btn">+ Adicionar Produto</button>
+        </div>
+
+        <!-- Tabela -->
+        <div class="table-container">
+          <table class="inventory-table">
+            <thead>
+              <tr>
+                <th>Produto</th>
+                <th>Categoria</th>
+                <th>Quantidade</th>
+                <th>Localização</th>
+                <th>Glazer</th>
+                <th>Validade</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="inventory-body">
+              <!-- Produtos adicionados via JS -->
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </div>
+
+  <!-- POPUP DE CADASTRO -->
+  <div id="popup-overlay" class="popup-overlay">
+    <div class="popup">
+      <h2>Cadastrar Produto</h2>
+
+      <label>Produto</label>
+      <select id="produto-nome">
+        <option>Atum</option>
+        <option>Pescada Amarela</option>
+        <option>Tilápia</option>
+        <option>Robalo</option>
+      </select>
+
+      <label>Categoria</label>
+      <select id="produto-categoria">
+        <option>Peixe Inteiro</option>
+        <option>Peixe em Filé</option>
+        <option>Peixe em Posta</option>
+      </select>
+
+
+      <label>Quantidade (kg)</label>
+      <input type="number" id="produto-qtd" class="search-input">
+
+      <label>Localização</label>
+      <select id="produto-local">
+        <option>Câmara A</option>
+        <option>Câmara B</option>
+        <option>Câmara C</option>
+      </select>
+
+      <label>Glazer</label>
+      <select id="produto-glazer">
+        <option value="com">Com Glazer</option>
+        <option value="sem">Sem Glazer</option>
+      </select>
+
+      <label>Validade</label>
+      <input type="date" id="produto-validade" class="search-input">
+
+      <div class="popup-buttons">
+        <button id="salvar-produto" class="save-btn">Cadastrar</button>
+        <button id="cancelar-popup" class="cancel-btn">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <app-sidebar></app-sidebar>
+</body>
+
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../components/customPopups.js"></script>
+    <script src="../../auth.js"></script>
+    <script src="../../authGuard.js"></script>
+    <script src="../../components/sidebar.js" defer></script>
+    <link rel="stylesheet" href="../../global.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="cadastro_func.js" defer></script>
+    <title>Controle de Funcionários</title>
+</head>
+
+<body>
+    <div class="main-content">
+        <div class="header">
+            <h1>Controle de Funcionários</h1>
+            <p>Gerencie cadastros, registros de ponto e jornadas de trabalho</p>
+        </div>
+
+        <!-- Estatísticas -->
+        <div class="dashboard-grid" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-user-tie" style="color: #3b82f6;"></i>
+                </div>
+                <div class="card-title">Total de Funcionários</div>
+                <div class="card-value" id="total-funcionarios">0</div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-user-check" style="color: #10b981;"></i>
+                </div>
+                <div class="card-title">Funcionários Ativos</div>
+                <div class="card-value" id="funcionarios-ativos">0</div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-user-times" style="color: #ef4444;"></i>
+                </div>
+                <div class="card-title">Funcionários Inativos</div>
+                <div class="card-value" id="funcionarios-inativos">0</div>
+            </div>
+        </div>
+
+        <!-- Botão Novo Funcionário -->
+        <div style="display: flex; justify-content: flex-end; margin: 20px 0;">
+            <button id="new-employee-btn" class="add-product-btn">
+                + Novo Funcionário
+            </button>
+        </div>
+
+        <!-- Tabela de Funcionários -->
+        <div class="table-section">
+            <h2 class="section-title">Lista de Funcionários</h2>
+            <p class="subtext" id="funcionarios-ativos">0 funcionários encontrados</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Função</th>
+                        <th>E-mail</th>
+                        <th>Status</th>
+                        <th style="text-align: center;">Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="func-tbody">
+                    <!-- Conteúdo populado dinamicamente por JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+    <!-- Modais: formulário (novo/editar) e visualização -->
+    <div class="popup-overlay" id="form-overlay">
+        <div class="popup" role="dialog" aria-modal="true" aria-labelledby="form-title">
+            <h3 id="form-title">Cadastrar Novo Funcionário</h3>
+            <p>Preencha os dados do funcionário</p>
+            <form id="employee-form">
+                <input type="hidden" id="emp-idx">
+                <div class="form-grid">
+                    <div>
+                        <label for="emp-name">Nome Completo *</label>
+                        <input id="emp-name" placeholder="Nome completo" required />
+                    </div>
+
+                    <div>
+                        <label for="emp-cpf">CPF *</label>
+                        <input id="emp-cpf" placeholder="000.000.000-00" maxlength="11" required />
+                    </div>
+
+                    <div>
+                        <label for="emp-role">Cargo/Função *</label>
+                        <select id="emp-role" required>
+                            <option value="">Selecione o cargo</option>
+                            <option value="Gerente de Estoque">Gerente de Estoque</option>
+                            <option value="Operador de Produção">Operador de Produção</option>
+                            <option value="Motorista">Motorista</option>
+                            <option value="Atendimento">Vendedor</option>
+                            <option value="Administrativo">Administrativo</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="emp-sector">Setor *</label>
+                        <select id="emp-sector" required>
+                            <option value="">Selecione o setor</option>
+                            <option value="Vendas">Vendas</option>
+                            <option value="Produção">Produção</option>
+                            <option value="Logística">Logística</option>
+                            <option value="Financeiro">Financeiro</option>
+                            <option value="RH">RH</option>
+                            <option value="Comercial">Comercial</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="emp-email">E-mail</label>
+                        <input id="emp-email" type="email" placeholder="email@exemplo.com" />
+                    </div>
+                    <div>
+                        <label for="emp-phone">Telefone</label>
+                        <input id="emp-phone" type="tel" placeholder="(00) 00000-0000" maxlength="11" />
+                    </div>
+
+                    <div style="grid-column: 1 / -1;">
+                        <label for="emp-adm">Data de Admissão *</label>
+                        <input id="emp-adm" type="date" required />
+                    </div>
+                </div>
+
+                <div class="popup-buttons">
+                    <button type="submit" class="save-btn">Cadastrar</button>
+                    <button type="button" id="cancel-btn" class="cancel-btn">Cancelar</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="popup-overlay" id="view-overlay">
+        <div class="popup" role="dialog" aria-modal="true">
+            <h3>Detalhes do Funcionário</h3>
+            <div id="view-content" style="white-space:pre-wrap;"></div>
+            <div style="text-align:right; margin-top:12px;">
+                <button id="view-close" class="cancel-btn">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <app-sidebar></app-sidebar>
+</body>
+
+</html>
