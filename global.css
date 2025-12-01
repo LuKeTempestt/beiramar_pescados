@@ -126,7 +126,8 @@ a.button {
     color: white;
     font-size: 18px;
     display: block;
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
     margin: 0 auto;
     padding: 10px;
     text-align: center;
@@ -340,7 +341,7 @@ a.button:hover {
     flex: 1;
     padding: 40px;
     overflow-y: auto;
-    margin-left: 280px;
+    margin-left: 250px;
     min-height: 100vh;
 }
 
@@ -1126,8 +1127,38 @@ a.button:hover {
    RESPONSIVIDADE - MOBILE FIRST
    ============================================ */
 
-/* Tablets grandes e Desktop pequeno (até 1024px) */
+/* Tablets e dispositivos móveis (até 1024px) */
 @media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+    }
+
+    /* Sidebar mobile com menu sanduíche */
+    .sidebar {
+        transform: translateX(-100%);
+        width: 280px;
+        box-shadow: 4px 0 30px rgba(0, 0, 0, 0.3);
+        padding-top: 80px !important;
+    }
+
+    .toggle-btn {
+        display: flex !important;
+    }
+
+    .close-btn {
+        display: block !important;
+    }
+
+    .main-content {
+        padding: 30px;
+        margin-left: 0 !important;
+        margin-top: 80px;
+    }
+
+    .header h1 {
+        font-size: 2rem;
+    }
+
     .dashboard-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
@@ -1135,35 +1166,6 @@ a.button:hover {
 
     .stats-grid {
         grid-template-columns: 1fr;
-    }
-
-    .main-content {
-        padding: 30px;
-    }
-
-    .header h1 {
-        font-size: 2rem;
-    }
-}
-
-/* Tablets (até 768px) */
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
-
-    .main-content {
-        padding: 24px;
-        margin-left: 0;
-    }
-
-    .header h1 {
-        font-size: 1.75rem;
-    }
-
-    .dashboard-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
     }
 
     .card {
@@ -1192,6 +1194,10 @@ a.button:hover {
         width: 100%;
     }
 
+    .add-product-btn {
+        width: 100%;
+    }
+
     .comunicacao-topo {
         flex-direction: column;
         align-items: flex-start;
@@ -1216,34 +1222,63 @@ a.button:hover {
     .table-container {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
+        margin: 0 -24px;
+        padding: 0 24px;
     }
 
     .data-table,
     .inventory-table {
-        min-width: 600px;
+        min-width: 800px;
+    }
+
+    .data-table th,
+    .data-table td,
+    .inventory-table th,
+    .inventory-table td {
+        padding: 12px 10px;
+        font-size: 0.92rem;
+    }
+
+    .popup {
+        width: 90%;
+        max-width: 500px;
+    }
+
+    .card-value {
+        font-size: 1.75rem;
+    }
+
+    .value-amount {
+        font-size: 2rem;
+    }
+
+    .table-section {
+        padding: 16px;
     }
 }
 
-/* Mobile e Tablets pequenos (até 720px) */
-@media (max-width: 720px) {
-    /* Sidebar mobile */
-    .sidebar {
-        transform: translateX(-100%);
-        width: 280px;
-        box-shadow: 4px 0 30px rgba(0, 0, 0, 0.3);
-    }
-
-    .toggle-btn {
-        display: flex !important;
-    }
-
-    .close-btn {
-        display: block !important;
-    }
-
+/* Tablets médios (até 768px) */
+@media (max-width: 768px) {
     .main-content {
-        margin-left: 0 !important;
-        margin-top: 80px;
+        padding: 24px;
+    }
+
+    .header h1 {
+        font-size: 1.75rem;
+    }
+
+    .data-table th,
+    .data-table td,
+    .inventory-table th,
+    .inventory-table td {
+        padding: 10px 8px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Mobile (até 720px) */
+@media (max-width: 720px) {
+    .main-content {
         padding: 20px;
     }
 
@@ -1286,134 +1321,50 @@ a.button:hover {
     }
 }
 
-/* responsividade */
+/* Smartphones (até 480px) */
+@media (max-width: 480px) {
+    :root {
+        --border-radius: 6px;
+    }
 
-@media (max-width: 1024px) {
+    body {
+        font-size: 14px;
+    }
+
+    .main-content {
+        padding: 16px;
+    }
+
+    .card {
+        padding: 12px;
+    }
+
     .dashboard-grid {
-        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
     }
 
-    .stats-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
+    .card-value {
+        font-size: 1.4rem;
     }
 
-    .sidebar {
+    .value-amount {
+        font-size: 1.6rem;
+    }
+
+    .data-table th,
+    .data-table td,
+    .inventory-table th,
+    .inventory-table td {
+        padding: 8px 6px;
+        font-size: 0.85rem;
+    }
+
+    .data-table,
+    .inventory-table {
+        display: block;
         width: 100%;
-        height: auto;
+        overflow-x: auto;
     }
-
-    @media (max-width: 720px) {
-        .sidebar {
-            transform: translateX(-100%);
-            width: 300px;
-        }
-
-
-        .dashboard-grid {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    @media (max-width: 720px) {
-        .main-content {
-            margin-top: 30px;
-            margin-left: 0;
-        }
-    }
-
-
-    app-sidebar {
-        --sidebar-width: 190px;
-    }
-
-
-    @media (max-width: 480px) {
-        :root {
-            --border-radius: 6px;
-        }
-
-        body {
-            font-size: 14px;
-        }
-
-        .main-content {
-            padding: 16px;
-        }
-
-        .card {
-            padding: 12px;
-        }
-
-        .dashboard-grid {
-            gap: 12px;
-        }
-
-        .card-value {
-            font-size: 1.4rem;
-        }
-
-        .value-amount {
-            font-size: 1.6rem;
-        }
-
-        .data-table th,
-        .data-table td {
-            padding: 10px;
-            font-size: 0.85rem;
-        }
-
-        .data-table {
-            display: block;
-            width: 100%;
-            overflow-x: auto;
-        }
-    }
-
-
-
-    /* cadastro de funcionario */
-    @media (max-width:720px) {
-        .form-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .popup {
-            width: 95%;
-        }
-    }
-
-    /*comunicação*/
-
-    @media (max-width: 768px) {
-        .comunicacao-topo {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        .aba-info {
-            width: 100%;
-            justify-content: flex-start;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .mensagem-item {
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .mensagem-status {
-            margin-top: 10px;
-        }
-    }
-
 }
 
 /* POPUPS CUSTOMIZADOS (ALERT E CONFIRM) */
