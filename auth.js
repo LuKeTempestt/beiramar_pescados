@@ -51,7 +51,7 @@ const MENU_PERMISSIONS = {
     }
 };
 
-// Banco de dados de usuários
+// Usuários fictícios para demonstração local; não é um banco de dados
 const USERS_DB = {
     'adm': { id: 'adm', senha: 'admin123', nome: 'Administrador', role: ROLES.ADMIN },
     'moto': { id: 'moto', senha: 'motorista123', nome: 'João Motorista', role: ROLES.MOTORISTA },
@@ -60,14 +60,14 @@ const USERS_DB = {
     'vendedor': { id: 'vendedor', senha: 'vendedor123', nome: 'Ana Vendedora', role: ROLES.VENDEDOR }
 };
 
-// Classe principal de autenticação
+// Controle de sessão demonstrativo executado apenas no navegador
 class AuthSystem {
     constructor() {
         this.storageKey = 'beiramar_auth_session';
         this.initializeUsers();
     }
 
-    // Inicializa os usuários 
+    // Inicializa os usuários fictícios da demonstração 
     initializeUsers() {
         // Sempre atualiza com os usuários mais recentes do código
         localStorage.setItem('beiramar_users', JSON.stringify(USERS_DB));
@@ -79,7 +79,7 @@ class AuthSystem {
         return USERS_DB[id];
     }
 
-    // Realiza login
+    // Simula o login com os dados demonstrativos
     login(id, senha) {
         const user = this.getUser(id);
 
