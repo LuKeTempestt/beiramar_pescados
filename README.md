@@ -1,6 +1,12 @@
 # Beira Mar Pescados
 
+[![CI](https://github.com/LuKeTempestt/beiramar_pescados/actions/workflows/ci.yml/badge.svg)](https://github.com/LuKeTempestt/beiramar_pescados/actions/workflows/ci.yml)
+[![Demonstração](https://img.shields.io/badge/demonstra%C3%A7%C3%A3o-online-0A66C2)](https://luketempestt.github.io/beiramar_pescados/)
+[![Licença MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-green)](LICENSE)
+
 Protótipo front-end de um sistema administrativo para uma distribuidora de pescados. A aplicação reúne telas para estoque, produção, pedidos, entregas, clientes, funcionários, histórico e comunicação interna.
+
+**Demonstração online:** [luketempestt.github.io/beiramar_pescados](https://luketempestt.github.io/beiramar_pescados/)
 
 ## Sobre o projeto
 
@@ -40,6 +46,10 @@ As credenciais usadas para testar esses perfis são fictícias e estão document
 - Font Awesome
 
 ## Como executar
+
+Para uma avaliação rápida, abra a [demonstração online](https://luketempestt.github.io/beiramar_pescados/) e use um dos perfis fictícios descritos em [CREDENCIAIS_ACESSO.md](CREDENCIAIS_ACESSO.md).
+
+Para executar localmente:
 
 1. Clone o repositório:
 
@@ -85,4 +95,9 @@ Uma versão de produção exigiria autenticação no servidor, senhas com hash, 
 - integrar um banco de dados;
 - migrar a autenticação para o backend;
 - adicionar testes automatizados;
-- publicar uma demonstração online.
+- persistir as operações em banco de dados;
+- transformar os módulos em uma aplicação full stack.
+
+## Licença
+
+Distribuído sob a [licença MIT](LICENSE).
